@@ -5,12 +5,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ProductAlertsComponent } from './product-alerts/product-alerts.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
-import { CartComponent } from './cart/cart.component';
+import { NewsListComponent } from './news-list/news-list.component';
+import { NewsDetailsComponent } from './news-details/news-details.component';
+import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ShippingComponent } from './shipping/shipping.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { AboutServerComponent } from './about-server/about-server.component';
+import { CabinetComponent } from './cabinet/cabinet.component';
 
 @NgModule({
   imports: [
@@ -18,20 +19,23 @@ import { ShippingComponent } from './shipping/shipping.component';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-      { path: 'products/:productId', component: ProductDetailsComponent },
-      { path: 'cart', component: CartComponent },
-      { path: 'shipping', component: ShippingComponent },
+      { path: '', component: NewsListComponent },
+      { path: 'news/:newsId', component: NewsDetailsComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'registration', component: RegistrationComponent },
+      { path: 'about', component: AboutServerComponent },
+      { path: 'cabinet', component: CabinetComponent },
     ])
   ],
   declarations: [
     AppComponent,
     TopBarComponent,
-    ProductListComponent,
-    ProductAlertsComponent,
-    ProductDetailsComponent,
-    CartComponent,
-    ShippingComponent,
+    NewsListComponent,
+    NewsDetailsComponent,
+    LoginComponent,
+    RegistrationComponent,
+    AboutServerComponent,
+    CabinetComponent,
   ],
   bootstrap: [
     AppComponent

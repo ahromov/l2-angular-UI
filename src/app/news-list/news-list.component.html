@@ -1,0 +1,25 @@
+<h2>Newses</h2>
+
+<div class="news" *ngFor="let news of newses">
+
+    <div class="news_image">
+        <img [src]="'data:image/jpg;base64,'+ news.image" alt="{{ news.title }}"/>
+    </div>
+
+    <div class="news_content">
+        <h3 class="news_title">
+            <a [routerLink]="['/news', news.id]">
+                {{ news.title }}
+            </a>
+        </h3>
+
+        <p class="news_text" *ngIf="news.text">
+            {{ news.text }}
+        </p>
+
+        <h5>
+            {{ news.date | date: 'dd/MM/yyyy HH:mm' }}
+        </h5>
+    </div>
+
+</div>

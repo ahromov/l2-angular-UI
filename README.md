@@ -1,3 +1,2 @@
-# angular-tutorial
+# Angular based UI for l2-site project 
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/exwjkn)

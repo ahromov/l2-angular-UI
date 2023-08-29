@@ -1,0 +1,30 @@
+<h3>Cabinet</h3>
+
+<form *ngIf="!logedIn" [formGroup]="checkoutForm" (ngSubmit)="onLogin()">
+
+    <div>
+        <label for="email">
+            E-Mail
+        </label>
+        <input id="email" type="email" formControlName="email">
+    </div>
+
+    <div>
+        <label for="password">
+            Password
+        </label>
+        <input id="password" type="password" formControlName="password">
+    </div>
+
+    <p>
+        <a routerLink="/registration">Registration</a>
+    </p>
+
+    <button class="button" type="submit">Login</button>
+
+</form>
+
+<div *ngIf="logedIn">
+    <app-cabinet></app-cabinet>
+</div>
+

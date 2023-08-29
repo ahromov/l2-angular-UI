@@ -1,0 +1,26 @@
+img {
+    width: 150px;
+    border-radius: 10px;
+}
+
+div.news {
+    display: flex;
+}
+
+div.news_content {
+    padding-left: 1%;
+}
+
+h3.news_title {
+    display: inline;
+}
+
+p.news_text {
+    text-align: justify;
+}
+
+/*
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+*/

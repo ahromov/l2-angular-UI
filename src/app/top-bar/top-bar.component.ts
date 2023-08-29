@@ -1,14 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {RestService} from '../service/rest.service';
+import {StatusDto} from "../dto/StatusDto";
 
 @Component({
-  selector: 'app-top-bar',
-  templateUrl: './top-bar.component.html',
-  styleUrls: ['./top-bar.component.css']
+    selector: 'app-top-bar',
+    templateUrl: './top-bar.component.html',
+    styleUrls: ['./top-bar.component.css']
 })
-export class TopBarComponent {
+export class TopBarComponent implements OnInit {
+
+    gameServerStatus: StatusDto | undefined;
+
+    bulbeColor: string = 'red'
+
+    constructor(
+        private restService: RestService,
+    ) {}
+
+    ngOnInit(): void {
+        // @ts-ignore
+        this.gameServerStatus = this.restService.getServerStatus()
+            .subscribe(value => {
+                if (value.status === 'ON') this.bulbeColor = 'greenyellow'
+                this.gameServerStatus = value
+            });
+    }
 
 }
-
 
 /*
 Copyright Google LLC. All Rights Reserved.

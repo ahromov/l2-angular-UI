@@ -1,0 +1,17 @@
+<div class="about_server">
+    <h3>About the server!</h3>
+    <div class="server_rates">
+        <table aria-label="rates">
+            <tr style="background-color: #EEEEEE; ">
+                <th><h5>RATE NAME</h5></th>
+                <th><h5>RATE VALUE</h5></th>
+            </tr>
+            <tbody>
+            <tr *ngFor="let sp of serverProperties | keyvalue" style="background-color: aliceblue">
+                <td>{{sp.key}}</td>
+                <td>{{sp.value}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<h2>News</h2>
+
+<div *ngIf="news">
+  <h3>{{ news.title }}</h3>
+  <h4>{{ news.text }}</h4>
+  <h4>{{ news.date | date: 'dd/MM/yyyy HH:mm' }}</h4>
+  <p><img [src]="'data:image/jpg;base64,'+news.image" alt="{{ news.title }}"/></p>
+</div>
