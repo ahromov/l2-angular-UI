@@ -43,7 +43,7 @@ export class CabinetComponent {
 
     getGreeting() {
         if (this.token !== null) this.restService.getGreeting(this.token).subscribe(value => {
-            this.greeting = value.message
+            this.greeting = 'Hello ' + value.login + '!'
             this.saveToken();
             console.log(this.greeting)
         });

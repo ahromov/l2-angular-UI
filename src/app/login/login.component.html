@@ -16,9 +16,7 @@
         <input id="password" type="password" formControlName="password">
     </div>
 
-    <p>
-        <a routerLink="/registration">Registration</a>
-    </p>
+    <p *ngIf="errorMessage" style="color: crimson">{{errorMessage}}</p>
 
     <button class="button" type="submit">Login</button>
 

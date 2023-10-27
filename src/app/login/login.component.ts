@@ -17,6 +17,7 @@ export class LoginComponent {
 
     // token: string | undefined;
     logedIn: boolean = false;
+    errorMessage: string | null | undefined;
 
     constructor(
         private restService: RestService,
@@ -27,13 +28,19 @@ export class LoginComponent {
     }
 
     onLogin(): void {
-        this.getToken().subscribe(value => {
-            if (value !== null) {
-                localStorage.setItem('token', value.token)
-                this.logedIn = true;
-                this.checkoutForm.reset();
-            }
-        });
+        this.getToken()
+            .subscribe(
+                {
+                    next: (value) => {
+                        localStorage.setItem('token', value.token)
+                        this.logedIn = true;
+                        this.checkoutForm.reset();
+                    },
+                    error: err => {
+                        this.errorMessage = 'User not exists or incorrect password... '
+                    }
+                }
+         );
     }
 
     getToken() {

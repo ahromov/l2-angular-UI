@@ -32,6 +32,8 @@
 
     <button class="button" type="submit">Create user</button>
 
+    <p *ngIf="errMessage" style="color: crimson">{{errMessage}}</p>
+
 </form>
 
 <div *ngIf="isRegistered">

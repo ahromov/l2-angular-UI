@@ -12,6 +12,7 @@ export class RegistrationComponent {
 
     isRegistered: boolean = false;
     greeting: string | undefined;
+    errMessage?: string;
 
     registrationForm: any = this.formBuilder.group({
         login: '',
@@ -28,10 +29,22 @@ export class RegistrationComponent {
 
     onSubmit() {
         let user = this.buildUser();
-        this.restService.userRegistration(user).subscribe(value => {
-            this.greeting = 'Welcome ' + value.email + '!';
-            this.isRegistered = true;
+        this.restService.userRegistration(user).subscribe(
+            {
+                next: value => {
+                    this.greeting = 'Welcome ' + value.email + '!';
+                    this.isRegistered = true;
+                    },
+                error: err => {
+                    if (err.status == 409)
+                    this.errMessage = 'User with email ' + user.email+ ' already exist!'
+                    else{
+                        this.errMessage = 'Somthing wrong...( ' + err.status;
+                        console.error(err);
+                    }
+                }
         })
+        this.registrationForm.reset();
     }
 
     private buildUser() {
