@@ -1,0 +1,117 @@
+    <div id="stat">
+        <article>
+            <h1>common</h1>
+            <section>
+                <table>
+                    <tr>
+                        <th>accounts</th>
+                        <th>characters</th>
+                        <th>nobleses</th>
+                        <th>heroes</th>
+                        <th>gameMasters</th>
+                        <th>clans</th>
+                        <th>allys</th>
+                    </tr>
+                    <tr>
+                        <td>{{commons?.accCount?.count}}</td>
+                        <td>{{commons?.countAll?.all}}</td>
+                        <td>{{commons?.countAll?.nobles}}</td>
+                        <td>{{commons?.countAll?.heroes}}</td>
+                        <td>{{commons?.countAll?.gms}}</td>
+                        <td>{{commons?.countClans}}</td>
+                        <td>{{commons?.countAllys}}</td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+        <article id="top10">
+            <h1>top10chars</h1>
+            <section>
+                <table>
+                    <tr>
+                        <th>charName</th>
+                        <th>lvl</th>
+                        <th>charClass</th>
+                        <th>charSex</th>
+                        <th>clanName</th>
+                        <th>gameTime</th>
+                        <th>PvP/PK:</th>
+                    </tr>
+                    <tr *ngFor="let ttp of topTenPlayers">
+                        <td>{{ttp.charName}}</td>
+                        <td>{{ttp.level}}</td>
+                        <td>{{ttp.className}}</td>
+                        <td>{{ttp.gender}}</td>
+                        <td>{{ttp.className}}</td>
+                        <td>{{ttp.onlineTime}}}</td>
+                        <td>{{ttp.pvpKills}}/{{ttp.pkKills}}</td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+        <article id="clans">
+            <h1>clans</h1>
+            <section>
+                <table>
+                    <tr>
+                        <th>clanName</th>
+                        <th>lvl</th>
+                        <th>leader</th>
+                        <th>castleName</th>
+                        <th>fortName</th>
+                        <th>reputation</th>
+                        <th>midLvl</th>
+                        <th>ally</th>
+                    </tr>
+                    <tr *ngFor="let cl of clans">
+                        <td>{{cl?.name}}</td>
+                        <td>{{cl?.level}}</td>
+                        <td>{{cl?.leaderName}}</td>
+                        <td>{{cl?.castleName}}</td>
+                        <td>{{cl?.fortName}}</td>
+                        <td>{{cl?.reputation}}}</td>
+                        <td>{{cl?.midCharsLevel}}</td>
+                        <td>{{cl?.alyName}}</td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+        <article id="castles">
+            <h1>castles</h1>
+            <section>
+                <table>
+                    <tr>
+                        <th>castleName</th>
+                        <th>clanName</th>
+                        <th>tax</th>
+                        <th>treasure</th>
+                        <th>siegeDate</th>
+                    </tr>
+                    <tr *ngFor="let cl of castles">
+                        <td>{{cl?.name}}</td>
+                        <td>{{cl?.clanName}}</td>
+                        <td>{{cl?.taxPercent}}</td>
+                        <td>{{cl?.treasury}}</td>
+                        <td>{{cl?.siegeDate | date}}</td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+        <article id="forts">
+            <h1>forts</h1>
+            <section>
+                <table>
+                    <tr>
+                        <th>fortName</th>
+                        <th>clanName</th>
+                        <th>siegeDate</th>
+                    </tr>
+                    <tr *ngFor="let cl of forts">
+                        <td>{{cl?.name}}</td>
+                        <td>{{cl?.clanName}}</td>
+                        <td>{{cl?.siegeDate | date}}</td>
+                    </tr>
+                </table>
+            </section>
+        </article>
+    </div>

@@ -1,0 +1,11 @@
+div table {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+}
+
+div table th {
+    background-color: #90afc9;
+    color: #dfe2ec;
+    padding: 10px 10px 10px 10px;
+}

@@ -6,6 +6,11 @@ import {TokenDto} from "../dto/TokenDto";
 import {UserDto} from "../dto/UserDto";
 import {BASE_URL} from "./config/BASE_URL";
 import {AccountDto} from "../dto/AccountDto";
+import {CharacterCountDto, CharacterDto, CommonStatisticDto} from "../dto/CommonStatisticDto";
+import {TopTenPlayerDto} from "../dto/TopTenPlayerDto";
+import {ClanDto} from "../dto/ClanDto";
+import {CastleDto} from "../dto/CastleDto";
+import {FortDto} from "../dto/FortDto";
 
 @Injectable({
     providedIn: 'root'
@@ -96,5 +101,56 @@ export class RestService {
             })
         };
         return this.http.get<AccountDto[]>(this.baseUrl + '/priv/accounts', httpOptions);
+    }
+
+    getCommonStatistic() {
+        let common: CommonStatisticDto = new CommonStatisticDto();
+
+        this.http.get<number>(this.baseUrl + '/pub/clans/count')
+            .subscribe(value => common.countClans = value.toString());
+        this.http.get<number>(this.baseUrl + '/pub/clans/countAllys')
+            .subscribe(value => common.countAllys = value.toString());
+        this.http.get<CharacterCountDto>(this.baseUrl + '/pub/accounts/count')
+            .subscribe(value => common.accCount = value);
+        this.http.get<CharacterDto>(this.baseUrl + '/pub/characters/count')
+            .subscribe(value => common.countAll = value);
+
+        return common;
+    }
+
+    getTopTenPlayers() {
+        let ttp: TopTenPlayerDto[] = []
+        this.http.get<TopTenPlayerDto[]>(this.baseUrl + '/pub/characters/top10')
+            .subscribe(value => value.forEach(value1 => {
+                ttp.push(value1);
+            }));
+        return ttp;
+    }
+
+    getClans() {
+        let ttp: ClanDto[] = []
+        this.http.get<ClanDto[]>(this.baseUrl + '/pub/clans')
+            .subscribe(value => value.forEach(value1 => {
+                ttp.push(value1);
+            }));
+        return ttp;
+    }
+
+    getCastles() {
+        let ttp: CastleDto[] = []
+        this.http.get<CastleDto[]>(this.baseUrl + '/pub/castles')
+            .subscribe(value => value.forEach(value1 => {
+                ttp.push(value1);
+            }));
+        return ttp;
+    }
+
+    getForts() {
+        let ttp: FortDto[] = []
+        this.http.get<FortDto[]>(this.baseUrl + '/pub/forts')
+            .subscribe(value => value.forEach(value1 => {
+                ttp.push(value1);
+            }));
+        return ttp;
     }
 }

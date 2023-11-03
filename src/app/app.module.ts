@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { AboutServerComponent } from './about-server/about-server.component';
 import { CabinetComponent } from './cabinet/cabinet.component';
+import { StatisticComponent } from './statistic/statistic.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { CabinetComponent } from './cabinet/cabinet.component';
       { path: 'registration', component: RegistrationComponent },
       { path: 'about', component: AboutServerComponent },
       { path: 'cabinet', component: CabinetComponent },
+      { path: 'statistic', component: StatisticComponent },
     ])
   ],
   declarations: [
@@ -36,6 +38,7 @@ import { CabinetComponent } from './cabinet/cabinet.component';
     RegistrationComponent,
     AboutServerComponent,
     CabinetComponent,
+    StatisticComponent,
   ],
   bootstrap: [
     AppComponent
