@@ -13,6 +13,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AboutServerComponent } from './about-server/about-server.component';
 import { CabinetComponent } from './cabinet/cabinet.component';
 import { StatisticComponent } from './statistic/statistic.component';
+import {commonGuardGuard, loginGuard} from "./common-guard.guard";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 @NgModule({
   imports: [
@@ -22,11 +24,12 @@ import { StatisticComponent } from './statistic/statistic.component';
     RouterModule.forRoot([
       { path: '', component: NewsListComponent },
       { path: 'news/:newsId', component: NewsDetailsComponent },
-      { path: 'login', component: LoginComponent },
+      { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
       { path: 'registration', component: RegistrationComponent },
       { path: 'about', component: AboutServerComponent },
-      { path: 'cabinet', component: CabinetComponent },
+      { path: 'cabinet', component: CabinetComponent, canActivate: [commonGuardGuard] },
       { path: 'statistic', component: StatisticComponent },
+      { path: '**', redirectTo: '', pathMatch: 'full' },
     ])
   ],
   declarations: [
@@ -42,7 +45,10 @@ import { StatisticComponent } from './statistic/statistic.component';
   ],
   bootstrap: [
     AppComponent
-  ]
+  ],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+  ],
 })
 export class AppModule { }
 
