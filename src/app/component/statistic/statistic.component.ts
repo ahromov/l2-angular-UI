@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {CommonStatisticDto} from "../dto/CommonStatisticDto";
-import {RestService} from "../service/rest.service";
-import {TopTenPlayerDto} from "../dto/TopTenPlayerDto";
-import {ClanDto} from "../dto/ClanDto";
-import {CastleDto} from "../dto/CastleDto";
-import {FortDto} from "../dto/FortDto";
+import {CommonStatisticDto} from "../../dto/CommonStatisticDto";
+import {RestService} from "../../service/rest.service";
+import {TopTenPlayerDto} from "../../dto/TopTenPlayerDto";
+import {ClanDto} from "../../dto/ClanDto";
+import {CastleDto} from "../../dto/CastleDto";
+import {FortDto} from "../../dto/FortDto";
 
 @Component({
   selector: 'app-statistic',

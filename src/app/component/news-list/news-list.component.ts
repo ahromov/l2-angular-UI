@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
-import {RestService} from "../service/rest.service";
-import {NewsDto} from "../dto/NewsDto";
+import {RestService} from "../../service/rest.service";
+import {NewsDto} from "../../dto/NewsDto";
 
 @Component({
   selector: 'app-news-list',

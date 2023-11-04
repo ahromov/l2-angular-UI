@@ -1,8 +1,0 @@
-div.cabinet_nav_bar{
-    display: flex;
-}
-
-div.cabinet_nav_bar li{
-    margin-bottom: 10px;
-    margin-right: 20px;
-}

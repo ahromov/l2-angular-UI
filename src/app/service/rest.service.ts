@@ -83,7 +83,7 @@ export class RestService {
         return this.http.post<AccountDto>(this.baseUrl + '/priv/accounts', user, httpOptions);
     }
 
-    changePassword(accountDto: AccountDto, token: string | undefined) {
+    changeAccountPassword(accountDto: AccountDto, token: string | undefined) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',

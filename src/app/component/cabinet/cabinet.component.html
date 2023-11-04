@@ -37,16 +37,19 @@
         <div *ngIf="isShowAccountsList">
             <ul>
                 <li *ngFor="let acc of allAccounts">
-                    Login: {{ acc.login }} - Email: {{ acc.email }}
+                    Login: {{ acc.login }}
                     <button (click)="showChangePasswordForm(acc.login)">Change password</button>
                 </li>
             </ul>
         </div>
     </div>
 
+
     <form [formGroup]="checkoutForm" (ngSubmit)="onLogout()">
-
         <button class="button" type="submit">Logout</button>
-
     </form>
 </div>
+
+        <div class="alert" [class.visible]="isVisible">
+            <p style="color: #00bb00">{{infoMessage}}</p>
+        </div>

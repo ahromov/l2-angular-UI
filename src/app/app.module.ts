@@ -4,15 +4,15 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { NewsListComponent } from './news-list/news-list.component';
-import { NewsDetailsComponent } from './news-details/news-details.component';
-import { LoginComponent } from './login/login.component';
+import { TopBarComponent } from './component/top-bar/top-bar.component';
+import { NewsListComponent } from './component/news-list/news-list.component';
+import { NewsDetailsComponent } from './component/news-details/news-details.component';
+import { LoginComponent } from './component/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegistrationComponent } from './registration/registration.component';
-import { AboutServerComponent } from './about-server/about-server.component';
-import { CabinetComponent } from './cabinet/cabinet.component';
-import { StatisticComponent } from './statistic/statistic.component';
+import { RegistrationComponent } from './component/registration/registration.component';
+import { AboutServerComponent } from './component/about-server/about-server.component';
+import { CabinetComponent } from './component/cabinet/cabinet.component';
+import { StatisticComponent } from './component/statistic/statistic.component';
 import {commonGuardGuard, loginGuard} from "./common-guard.guard";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 
-import {RestService} from '../service/rest.service';
+import {RestService} from '../../service/rest.service';
 import {Router} from "@angular/router";
 
 @Component({
@@ -39,7 +39,7 @@ export class LoginComponent {
                         this.checkoutForm.reset();
                         this.router.navigate(['cabinet'])
                     },
-                    error: err => {
+                    error: () => {
                         this.errorMessage = 'User not exists or incorrect password... '
                     }
                 }

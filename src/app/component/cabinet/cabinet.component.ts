@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {RestService} from "../service/rest.service";
+import {RestService} from "../../service/rest.service";
 import {Router} from "@angular/router";
 import {FormBuilder} from "@angular/forms";
-import {AccountDto} from "../dto/AccountDto";
+import {AccountDto} from "../../dto/AccountDto";
 
 const TOKEN = "token";
 
@@ -26,6 +26,9 @@ export class CabinetComponent {
     formType: string | undefined;
     isShowAccountsList: boolean = false;
     allAccounts: AccountDto[] | undefined;
+    infoMessage?: string;
+    public isVisible: boolean = false;
+
 
     constructor(
         private restService: RestService,
@@ -83,28 +86,39 @@ export class CabinetComponent {
     }
 
     private createAccount() {
-        let user = this.buildUser();
+        let user = this.buildAccount();
         this.restService.createAccount(user, this.token)
             .subscribe(value => {
-                this.greeting = `Congratulation! Game account ${value.login} created`;
+                this.infoMessage = `Congratulation! Game account ${value.login} created`;
                 this.isShowForm = false;
+                this.showAlert()
             });
     }
 
     private changePassword() {
-        let accountDto = this.buildUser();
-        this.restService.changePassword(accountDto, this.token)
+        let accountDto = this.buildAccount();
+        this.restService.changeAccountPassword(accountDto, this.token)
             .subscribe(value => {
-                this.greeting = `Congratulation! Account ${value.login} password changed!`;
+                this.infoMessage = `Congratulation! Account ${value.login} password changed!`;
                 this.isShowForm = false;
+                this.showAlert()
             });
     }
 
-    private buildUser() {
-        let login = this.checkoutForm.controls['login'].value;
-        let password1 = this.checkoutForm.controls['password1'].value;
-        let password2 = this.checkoutForm.controls['password2'].value;
-        return new AccountDto(login, '', '', password1, password2);
+    showAlert() : void {
+        if (this.isVisible) {
+            return;
+        }
+        this.isVisible = true;
+        setTimeout(()=> this.isVisible = false,2500)
+    }
+
+    private buildAccount() {
+        let accountDto = new AccountDto();
+        accountDto.login = this.checkoutForm.controls['login'].value;
+        accountDto.accountPassword.newPassword = this.checkoutForm.controls['password1'].value;
+        accountDto.accountPassword.newRepeatedPassword = this.checkoutForm.controls['password2'].value;
+        return accountDto;
     }
 
     showAllAccounts() {
@@ -124,7 +138,7 @@ export class CabinetComponent {
         return list;
     }
 
-    showChangePasswordForm(login: string) {
+    showChangePasswordForm(login?: string) {
         this.showForm('changePassword');
         this.checkoutForm.controls['login'].value = login;
     }

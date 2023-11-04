@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
-import {RestService} from "../service/rest.service";
-import {UserDto} from "../dto/UserDto";
+import {RestService} from "../../service/rest.service";
+import {UserDto} from "../../dto/UserDto";
 
 @Component({
     selector: 'app-registration',
@@ -40,7 +40,7 @@ export class RegistrationComponent {
                     this.errMessage = 'User with email ' + user.email+ ' already exist!'
                     else{
                         this.errMessage = 'Somthing wrong...( ' + err.status;
-                        console.error(err);
+                        console.error();
                     }
                 }
         })

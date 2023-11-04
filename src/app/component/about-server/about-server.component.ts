@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {RestService} from "../service/rest.service";
+import {RestService} from "../../service/rest.service";
 
 @Component({
     selector: 'app-about-server',
