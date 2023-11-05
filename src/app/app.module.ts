@@ -15,6 +15,7 @@ import { CabinetComponent } from './component/cabinet/cabinet.component';
 import { StatisticComponent } from './component/statistic/statistic.component';
 import {commonGuardGuard, loginGuard} from "./common-guard.guard";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import { CabinetRestorePasswordComponent } from './component/cabinet-restore-password/cabinet-restore-password.component';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
       { path: 'about', component: AboutServerComponent },
       { path: 'cabinet', component: CabinetComponent, canActivate: [commonGuardGuard] },
       { path: 'statistic', component: StatisticComponent },
+      { path: 'restore-password', component: CabinetRestorePasswordComponent },
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ])
   ],
@@ -42,6 +44,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     AboutServerComponent,
     CabinetComponent,
     StatisticComponent,
+    CabinetRestorePasswordComponent,
   ],
   bootstrap: [
     AppComponent

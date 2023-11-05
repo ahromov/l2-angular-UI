@@ -1,4 +1,4 @@
-<h3>Cabinet</h3>
+<h3>Sign-in</h3>
 
 <form *ngIf="!logedIn" [formGroup]="checkoutForm" (ngSubmit)="onLogin()">
 
@@ -16,7 +16,10 @@
         <input id="password" type="password" formControlName="password">
     </div>
 
-    <p *ngIf="errorMessage" style="color: crimson">{{errorMessage}}</p>
+    <div *ngIf="errorMessage">
+        <p style="color: crimson">{{errorMessage}}</p>
+        <p>Please, verify your credentials, or try <a [routerLink]="['/restore-password']">restore password</a></p>
+    </div>
 
     <button class="button" type="submit">Login</button>
 

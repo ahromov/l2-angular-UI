@@ -11,6 +11,8 @@ import {TopTenPlayerDto} from "../dto/TopTenPlayerDto";
 import {ClanDto} from "../dto/ClanDto";
 import {CastleDto} from "../dto/CastleDto";
 import {FortDto} from "../dto/FortDto";
+import {UserEmailDto} from "../dto/UserEmailDto";
+
 
 @Injectable({
     providedIn: 'root'
@@ -152,5 +154,16 @@ export class RestService {
                 ttp.push(value1);
             }));
         return ttp;
+    }
+
+    restorePassword(email: string) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        };
+        let userEmailDto=new UserEmailDto()
+        userEmailDto.email = email;
+        return this.http.post<UserDto>(this.baseUrl + '/pub/users/restorePassword', userEmailDto, httpOptions)
     }
 }
