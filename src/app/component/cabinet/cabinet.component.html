@@ -1,55 +1,58 @@
-<div *ngIf="logedIn">
+<div *ngIf="loggedIn">
+    <h3>Cabinet</h3>
     <p>{{ greeting }}</p>
     <div class="cabinet_nav_bar">
         <div>
             <ul>
                 <li>
-                    <a (click)="showForm('createAccount')">Create account</a>
+                    <a (click)="showAccountCreateForm()">Create account</a>
                 </li>
                 <li>
                     <a (click)="showAllAccounts()">All accounts</a>
                 </li>
-            </ul>
-        </div>
-        <div>
-            <form *ngIf="isShowForm" [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-                <div>
-                    <label for="login">
-                        Login name
-                    </label>
-                    <input id="login" type="text" formControlName="login">
-                </div>
-                <div>
-                    <label for="password1">
-                        Password
-                    </label>
-                    <input id="password1" type="password" formControlName="password1">
-                    <label for="password2">
-                        Repeat password
-                    </label>
-                    <input id="password2" type="password" formControlName="password2">
-                </div>
-
-                <button class="button" type="submit">{{ buttonTitle }}</button>
-
-            </form>
-        </div>
-        <div *ngIf="isShowAccountsList">
-            <ul>
-                <li *ngFor="let acc of allAccounts">
-                    Login: {{ acc.login }}
-                    <button (click)="showChangePasswordForm(acc.login)">Change password</button>
+                <li>
+                    <a (click)="showPasswordChangeForm()">Change password</a>
                 </li>
             </ul>
         </div>
+
+        <div *ngIf="isShowCreateAccountForm">
+            <app-account-create (infoMessage)="showInfoAlert($event)"
+                                (errorMessage)="showErrorAlert($event)">
+            </app-account-create>
+        </div>
+
+        <div *ngIf="isShowAccountsList">
+            <app-accounts-list (isShowAccountsList)="isShowAccountsList = $event"
+                               (isShowAccountsPasswordChangeForm)="isShowAccontChangePasswordPasswordForm = $event"
+                               (selectedLogin)="selectedLogin = $event">
+            </app-accounts-list>
+        </div>
+
+        <div *ngIf="isShowAccontChangePasswordPasswordForm">
+            <app-account-password-change [accLogin]="selectedLogin"
+                                         (infoMessage)="showInfoAlert($event)"
+                                         (errorMessage)="showErrorAlert($event)">
+            </app-account-password-change>
+        </div>
+
+        <div *ngIf="isShowChangePasswordForm">
+            <app-cabinet-change-password (infoMessage)="showInfoAlert($event)"
+                                         (errorMessage)="showErrorAlert($event)">
+            </app-cabinet-change-password>
+        </div>
     </div>
 
+    <div class="alert" [class.visible]="isVisible">
+        <div class="infoMessage">
+            <p>{{infoMessage}}</p>
+        </div>
+        <div class="errorMessage">
+            <p>{{errorMessage}}</p>
+        </div>
+    </div>
 
-    <form [formGroup]="checkoutForm" (ngSubmit)="onLogout()">
-        <button class="button" type="submit">Logout</button>
-    </form>
+    <button class="button" type="submit" (click)="onLogout()">Logout</button>
 </div>
 
-        <div class="alert" [class.visible]="isVisible">
-            <p style="color: #00bb00">{{infoMessage}}</p>
-        </div>
+

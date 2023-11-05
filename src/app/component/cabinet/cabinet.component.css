@@ -8,19 +8,27 @@ div.cabinet_nav_bar li{
 }
 
 .alert  {
-    position: fixed;
     left: auto;
     right: auto;
     border:1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.25rem;
-    padding: 2rem;
-    background: #ffffff;
     box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
     transition:  all 0.2s ease-in-out;
     opacity: 0;
+    text-align: center;
 }
 
 .visible {
     opacity: 1;
     transform: translateY(1.25rem);
+}
+
+.alert .infoMessage {
+    background: #b7ffad;
+    color: #11c900;
+}
+
+.alert .errorMessage {
+    background: #ffa4a4;
+    color: crimson;
 }

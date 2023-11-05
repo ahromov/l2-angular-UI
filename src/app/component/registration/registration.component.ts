@@ -52,6 +52,6 @@ export class RegistrationComponent {
         let email = this.registrationForm.controls['email'].value;
         let password1 = this.registrationForm.controls['password1'].value;
         let password2 = this.registrationForm.controls['password2'].value;
-        return new UserDto(login, email, '', password1, password2);
+        return new UserDto(login, email, password1, password2);
     }
 }

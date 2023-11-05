@@ -1,7 +1,7 @@
 export class AccountDto {
 
-    public login?: string;
-    public email?: string;
+    public login!: string;
+    public email!: string;
     accountPassword: AccountPasswordDto = new AccountPasswordDto();
 
 }

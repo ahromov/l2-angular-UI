@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { TopBarComponent } from './component/top-bar/top-bar.component';
-import { NewsListComponent } from './component/news-list/news-list.component';
+import { NewsListComponent } from './component/news-details/news-list/news-list.component';
 import { NewsDetailsComponent } from './component/news-details/news-details.component';
 import { LoginComponent } from './component/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +16,10 @@ import { StatisticComponent } from './component/statistic/statistic.component';
 import {commonGuardGuard, loginGuard} from "./common-guard.guard";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { CabinetRestorePasswordComponent } from './component/cabinet-restore-password/cabinet-restore-password.component';
+import { CabinetChangePasswordComponent } from './component/cabinet/cabinet-change-password/cabinet-change-password.component';
+import { AccountsListComponent } from './component/cabinet/accounts-list/accounts-list.component';
+import { AccountPasswordChangeComponent } from './component/cabinet/account-password-change/account-password-change.component';
+import { AccountCreateComponent } from './component/cabinet/account-create/account-create.component';
 
 @NgModule({
   imports: [
@@ -31,6 +35,7 @@ import { CabinetRestorePasswordComponent } from './component/cabinet-restore-pas
       { path: 'cabinet', component: CabinetComponent, canActivate: [commonGuardGuard] },
       { path: 'statistic', component: StatisticComponent },
       { path: 'restore-password', component: CabinetRestorePasswordComponent },
+      // { path: 'change-password', component: CabinetChangePasswordComponent, canActivate: [commonGuardGuard] },
       { path: '**', redirectTo: '', pathMatch: 'full' },
     ])
   ],
@@ -45,6 +50,10 @@ import { CabinetRestorePasswordComponent } from './component/cabinet-restore-pas
     CabinetComponent,
     StatisticComponent,
     CabinetRestorePasswordComponent,
+    CabinetChangePasswordComponent,
+    AccountsListComponent,
+    AccountPasswordChangeComponent,
+    AccountCreateComponent,
   ],
   bootstrap: [
     AppComponent

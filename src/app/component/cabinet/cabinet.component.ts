@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {RestService} from "../../service/rest.service";
 import {Router} from "@angular/router";
-import {FormBuilder} from "@angular/forms";
-import {AccountDto} from "../../dto/AccountDto";
 
 const TOKEN = "token";
 
@@ -13,134 +11,90 @@ const TOKEN = "token";
 })
 export class CabinetComponent {
 
-    logedIn: boolean = false;
-    greeting: string | undefined;
-    token: string | undefined
-    checkoutForm: any = this.formBuilder.group({
-        login: '',
-        password1: '',
-        password2: ''
-    });
-    isShowForm: boolean = false;
-    buttonTitle: string | undefined;
-    formType: string | undefined;
-    isShowAccountsList: boolean = false;
-    allAccounts: AccountDto[] | undefined;
     infoMessage?: string;
-    public isVisible: boolean = false;
+    errorMessage?: string;
 
+    loggedIn: boolean = false;
+    greeting: string | undefined;
+
+    isShowAccountsList: boolean = false;
+    isShowChangePasswordForm: boolean = false;
+    isShowCreateAccountForm: boolean = false;
+    isVisible: boolean = false;
+    isShowAccontChangePasswordPasswordForm: boolean = false;
+    selectedLogin?: string;
 
     constructor(
         private restService: RestService,
-        private router: Router,
-        private formBuilder: FormBuilder
+        private router: Router
     ) {
-        this.logedIn = true;
-        let item = localStorage.getItem(TOKEN);
-        if (item !== null) {
-            this.logedIn = true;
-            this.token = item;
+        let token = localStorage.getItem(TOKEN);
+        if (token){
+            this.loggedIn = true;
         }
         this.getGreeting();
     }
 
     getGreeting() {
-        if (this.token !== null) this.restService.getGreeting(this.token).subscribe(value => {
+        let token = localStorage.getItem(TOKEN);
+        if (token !== null) this.restService.getGreeting(token).subscribe(value => {
             this.greeting = 'Hello ' + value.login + '!'
-            this.saveToken();
-            console.log(this.greeting)
         });
     }
 
-    private saveToken() {
-        if (typeof this.token === "string") {
-            localStorage.setItem(TOKEN, this.token)
-        }
+    showAccountCreateForm() {
+        this.clearMessages()
+        this.hideForms()
+        this.isShowCreateAccountForm = !this.isShowCreateAccountForm;
+    }
+
+    showAllAccounts() {
+        this.clearMessages()
+        this.hideForms()
+        this.isShowAccountsList = !this.isShowAccountsList;
+    }
+
+    showPasswordChangeForm() {
+        this.clearMessages()
+        this.hideForms()
+        this.isShowChangePasswordForm = !this.isShowChangePasswordForm;
     }
 
     onLogout(): void {
-        // @ts-ignore
+        this.loggedIn = false;
         localStorage.clear()
         this.router.navigate(['']);
-        this.logedIn = false;
     }
 
+    showInfoAlert($event: string) {
+        this.clearMessages()
+        this.infoMessage = $event;
+        this.showAlert()
+    }
 
-    showForm(type: string) {
-        if (type === 'createAccount') this.buttonTitle = 'Create game account'
-        if (type === 'changePassword') this.buttonTitle = 'Change password'
-        this.formType = type;
+    showErrorAlert($event: string) {
+        this.clearMessages()
+        this.errorMessage = $event;
+        this.showAlert()
+    }
+
+    private hideForms(){
+        this.isShowCreateAccountForm = false;
         this.isShowAccountsList = false;
-        this.isShowForm = !this.isShowForm;
+        this.isShowAccontChangePasswordPasswordForm = false;
+        this.isShowChangePasswordForm = false;
     }
 
-    onSubmit() {
-        switch (this.formType) {
-            case 'createAccount':
-                this.createAccount();
-                return;
-            case 'changePassword':
-                this.changePassword();
-                return;
-        }
+    private clearMessages(){
+        this.infoMessage = undefined;
+        this.errorMessage = undefined;
     }
 
-    private createAccount() {
-        let user = this.buildAccount();
-        this.restService.createAccount(user, this.token)
-            .subscribe(value => {
-                this.infoMessage = `Congratulation! Game account ${value.login} created`;
-                this.isShowForm = false;
-                this.showAlert()
-            });
-    }
-
-    private changePassword() {
-        let accountDto = this.buildAccount();
-        this.restService.changeAccountPassword(accountDto, this.token)
-            .subscribe(value => {
-                this.infoMessage = `Congratulation! Account ${value.login} password changed!`;
-                this.isShowForm = false;
-                this.showAlert()
-            });
-    }
-
-    showAlert() : void {
+    private showAlert() : void {
         if (this.isVisible) {
             return;
         }
         this.isVisible = true;
         setTimeout(()=> this.isVisible = false,2500)
     }
-
-    private buildAccount() {
-        let accountDto = new AccountDto();
-        accountDto.login = this.checkoutForm.controls['login'].value;
-        accountDto.accountPassword.newPassword = this.checkoutForm.controls['password1'].value;
-        accountDto.accountPassword.newRepeatedPassword = this.checkoutForm.controls['password2'].value;
-        return accountDto;
-    }
-
-    showAllAccounts() {
-        this.allAccounts = this.getAllAccounts();
-        this.isShowForm = false;
-        this.isShowAccountsList = true;
-    }
-
-    private getAllAccounts() {
-        let list: AccountDto[] = []
-        this.restService.getAllAccounts(this.token)
-            .subscribe(value => {
-                value.forEach(v => {
-                    list.push(v)
-                })
-            })
-        return list;
-    }
-
-    showChangePasswordForm(login?: string) {
-        this.showForm('changePassword');
-        this.checkoutForm.controls['login'].value = login;
-    }
-
 }

@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {StatusDto} from "../dto/StatusDto";
 import {NewsDto} from "../dto/NewsDto";
 import {TokenDto} from "../dto/TokenDto";
-import {UserDto} from "../dto/UserDto";
+import {UserDto, UserPasswordDto} from "../dto/UserDto";
 import {BASE_URL} from "./config/BASE_URL";
 import {AccountDto} from "../dto/AccountDto";
 import {CharacterCountDto, CharacterDto, CommonStatisticDto} from "../dto/CommonStatisticDto";
@@ -75,7 +75,7 @@ export class RestService {
         return this.http.get<Map<string, string>>(this.baseUrl + '/pub/gameServers/rates');
     }
 
-    createAccount(user: AccountDto, token: string | undefined) {
+    createAccount(user: AccountDto, token: string | null) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ export class RestService {
         return this.http.post<AccountDto>(this.baseUrl + '/priv/accounts', user, httpOptions);
     }
 
-    changeAccountPassword(accountDto: AccountDto, token: string | undefined) {
+    changeAccountPassword(accountDto: AccountDto, token: string | null) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ export class RestService {
         return this.http.patch<AccountDto>(this.baseUrl + '/priv/accounts/' + accountDto.login + '/password', accountDto, httpOptions);
     }
 
-    getAllAccounts(token: string | undefined) {
+    getAllAccounts(token: string | null) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -165,5 +165,15 @@ export class RestService {
         let userEmailDto=new UserEmailDto()
         userEmailDto.email = email;
         return this.http.post<UserDto>(this.baseUrl + '/pub/users/restorePassword', userEmailDto, httpOptions)
+    }
+
+    changeCabinetPassword(token: string | null, upd: UserPasswordDto) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.patch<UserDto>(this.baseUrl + '/priv/users/changePassword', upd, httpOptions);
     }
 }

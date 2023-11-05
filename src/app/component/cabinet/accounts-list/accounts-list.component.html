@@ -1,0 +1,8 @@
+<div>
+<ul>
+    <li *ngFor="let acc of allAccounts">
+        Login: {{ acc.login }}
+        <a (click)="showAccountChangePasswordForm(acc.login)">Change password</a>
+    </li>
+</ul>
+</div>
