@@ -13,6 +13,9 @@
                 <li>
                     <a (click)="showPasswordChangeForm()">Change password</a>
                 </li>
+                <li>
+                    <a (click)="showContactForm()">Contact admin</a>
+                </li>
             </ul>
         </div>
 
@@ -24,12 +27,12 @@
 
         <div *ngIf="isShowAccountsList">
             <app-accounts-list (isShowAccountsList)="isShowAccountsList = $event"
-                               (isShowAccountsPasswordChangeForm)="isShowAccontChangePasswordPasswordForm = $event"
+                               (isShowAccountsPasswordChangeForm)="isShowAccountChangePasswordPasswordForm = $event"
                                (selectedLogin)="selectedLogin = $event">
             </app-accounts-list>
         </div>
 
-        <div *ngIf="isShowAccontChangePasswordPasswordForm">
+        <div *ngIf="isShowAccountChangePasswordPasswordForm">
             <app-account-password-change [accLogin]="selectedLogin"
                                          (infoMessage)="showInfoAlert($event)"
                                          (errorMessage)="showErrorAlert($event)">
@@ -40,6 +43,12 @@
             <app-cabinet-change-password (infoMessage)="showInfoAlert($event)"
                                          (errorMessage)="showErrorAlert($event)">
             </app-cabinet-change-password>
+        </div>
+
+        <div *ngIf="isShowContactForm">
+            <app-contact (infoMessage)="showInfoAlert($event)"
+                         (errorMessage)="showErrorAlert($event)">
+            </app-contact>
         </div>
     </div>
 

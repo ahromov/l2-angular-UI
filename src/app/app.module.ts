@@ -20,6 +20,7 @@ import { CabinetChangePasswordComponent } from './component/cabinet/cabinet-chan
 import { AccountsListComponent } from './component/cabinet/accounts-list/accounts-list.component';
 import { AccountPasswordChangeComponent } from './component/cabinet/account-password-change/account-password-change.component';
 import { AccountCreateComponent } from './component/cabinet/account-create/account-create.component';
+import { ContactComponent } from './component/cabinet/contact/contact.component';
 
 @NgModule({
   imports: [
@@ -54,6 +55,7 @@ import { AccountCreateComponent } from './component/cabinet/account-create/accou
     AccountsListComponent,
     AccountPasswordChangeComponent,
     AccountCreateComponent,
+    ContactComponent,
   ],
   bootstrap: [
     AppComponent

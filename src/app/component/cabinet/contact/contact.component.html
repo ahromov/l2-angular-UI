@@ -1,0 +1,12 @@
+<div>
+    <form [formGroup]="checkoutForm" (ngSubmit)="sendMessage()">
+        <div>
+            <label for="text">
+                Message text
+            </label>
+            <textarea (click)="clearText()" id="text" type="html" formControlName="text"></textarea>
+        </div>
+
+        <button class="button" type="submit">Send message</button>
+    </form>
+</div>

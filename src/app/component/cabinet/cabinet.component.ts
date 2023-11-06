@@ -21,8 +21,9 @@ export class CabinetComponent {
     isShowChangePasswordForm: boolean = false;
     isShowCreateAccountForm: boolean = false;
     isVisible: boolean = false;
-    isShowAccontChangePasswordPasswordForm: boolean = false;
+    isShowAccountChangePasswordPasswordForm: boolean = false;
     selectedLogin?: string;
+    isShowContactForm: boolean = false;
 
     constructor(
         private restService: RestService,
@@ -60,6 +61,12 @@ export class CabinetComponent {
         this.isShowChangePasswordForm = !this.isShowChangePasswordForm;
     }
 
+    showContactForm() {
+        this.clearMessages()
+        this.hideForms()
+        this.isShowContactForm = !this.isShowContactForm;
+    }
+
     onLogout(): void {
         this.loggedIn = false;
         localStorage.clear()
@@ -81,8 +88,9 @@ export class CabinetComponent {
     private hideForms(){
         this.isShowCreateAccountForm = false;
         this.isShowAccountsList = false;
-        this.isShowAccontChangePasswordPasswordForm = false;
+        this.isShowAccountChangePasswordPasswordForm = false;
         this.isShowChangePasswordForm = false;
+        this.isShowContactForm = false;
     }
 
     private clearMessages(){
@@ -97,4 +105,5 @@ export class CabinetComponent {
         this.isVisible = true;
         setTimeout(()=> this.isVisible = false,2500)
     }
+
 }

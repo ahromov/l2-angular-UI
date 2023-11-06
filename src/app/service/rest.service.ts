@@ -12,6 +12,7 @@ import {ClanDto} from "../dto/ClanDto";
 import {CastleDto} from "../dto/CastleDto";
 import {FortDto} from "../dto/FortDto";
 import {UserEmailDto} from "../dto/UserEmailDto";
+import {MessageDto} from "../dto/MessageDto";
 
 
 @Injectable({
@@ -175,5 +176,15 @@ export class RestService {
             })
         };
         return this.http.patch<UserDto>(this.baseUrl + '/priv/users/changePassword', upd, httpOptions);
+    }
+
+    sendMessage(token: string | null, messageDto: MessageDto) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.post(this.baseUrl + '/priv/users/sendMessage', messageDto, httpOptions);
     }
 }
