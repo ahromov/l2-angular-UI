@@ -4,7 +4,6 @@ import {StatusDto} from "../dto/StatusDto";
 import {NewsDto} from "../dto/NewsDto";
 import {TokenDto} from "../dto/TokenDto";
 import {UserDto, UserPasswordDto} from "../dto/UserDto";
-import {BASE_URL} from "./config/BASE_URL";
 import {AccountDto, AccountPasswordDto} from "../dto/AccountDto";
 import {CharacterCountDto, CharacterDto, CommonStatisticDto} from "../dto/CommonStatisticDto";
 import {TopTenPlayerDto} from "../dto/TopTenPlayerDto";
@@ -13,6 +12,7 @@ import {CastleDto} from "../dto/CastleDto";
 import {FortDto} from "../dto/FortDto";
 import {UserEmailDto} from "../dto/UserEmailDto";
 import {MessageDto} from "../dto/MessageDto";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
@@ -20,7 +20,7 @@ import {MessageDto} from "../dto/MessageDto";
 })
 export class RestService {
 
-    private baseUrl = BASE_URL
+    private baseUrl: string = environment.baseUrl;
 
     constructor(
         private http: HttpClient
@@ -41,7 +41,7 @@ export class RestService {
         return this.http.get<NewsDto>(this.baseUrl + '/pub/news/' + id);
     }
 
-    getToken(email: string | null, password: string | null) {
+    getAuthToken(email: string | null, password: string | null) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
@@ -186,5 +186,14 @@ export class RestService {
             })
         };
         return this.http.post(this.baseUrl + '/priv/users/sendMessage', messageDto, httpOptions);
+    }
+
+    chaptchaValidate(token: string) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        };
+        return this.http.post(this.baseUrl + '/pub/reCaptcha/validate', { "response": token }, httpOptions);
     }
 }

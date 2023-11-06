@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {RestService} from "../../service/rest.service";
 import {UserDto} from "../../dto/UserDto";
+import {ReCaptchaV3Service} from "ng-recaptcha";
 
 @Component({
     selector: 'app-registration',
@@ -24,27 +25,42 @@ export class RegistrationComponent {
     constructor(
         private restService: RestService,
         private formBuilder: FormBuilder,
+        private recaptchaV3Service: ReCaptchaV3Service
     ) {
     }
 
     onSubmit() {
+        this.recaptchaV3Service.execute('importantAction')
+            .subscribe((token: string) => {
+                this.restService.chaptchaValidate(token).subscribe({
+                    next: value => {
+                        this.doSignUp();
+                    },
+                    error: err => {
+                        console.debug(err.errorMessage);
+                    }
+                })
+            });
+    }
+
+    private doSignUp() {
         let user = this.buildUser();
         this.restService.userRegistration(user).subscribe(
             {
                 next: value => {
+                    this.registrationForm.reset();
                     this.greeting = 'Welcome ' + value.email + '!';
                     this.isRegistered = true;
-                    },
+                },
                 error: err => {
                     if (err.status == 409)
-                    this.errMessage = 'User with email ' + user.email+ ' already exist!'
+                        this.errMessage = 'User with email ' + user.email+ ' already exist!'
                     else{
                         this.errMessage = 'Somthing wrong...( ' + err.status;
                         console.error();
                     }
                 }
-        })
-        this.registrationForm.reset();
+            })
     }
 
     private buildUser() {
