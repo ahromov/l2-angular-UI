@@ -52,13 +52,12 @@
         </div>
     </div>
 
-    <div class="alert" [class.visible]="isVisible">
-        <div class="infoMessage">
-            <p>{{infoMessage}}</p>
-        </div>
-        <div class="errorMessage">
-            <p>{{errorMessage}}</p>
-        </div>
+    <div class="alert infoMessage"
+         [class.visible]="isVisible"
+         [class.infoMessage]="infoMessage"
+         [class.errorMessage]="errorMessage">
+        {{infoMessage}}
+        {{errorMessage}}
     </div>
 
     <button class="button" type="submit" (click)="onLogout()">Logout</button>

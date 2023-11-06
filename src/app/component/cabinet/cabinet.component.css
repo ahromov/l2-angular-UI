@@ -8,8 +8,8 @@ div.cabinet_nav_bar li{
 }
 
 .alert  {
-    left: auto;
-    right: auto;
+    margin: auto;
+    max-width: 50%;
     border:1px solid rgba(0, 0, 0, 0.2);
     border-radius: 0.25rem;
     box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
@@ -23,12 +23,16 @@ div.cabinet_nav_bar li{
     transform: translateY(1.25rem);
 }
 
-.alert .infoMessage {
-    background: #b7ffad;
+.infoMessage, .errorMessage{
+    padding: 1rem;
+}
+
+.infoMessage {
+    background-color: #b7ffad;
     color: #11c900;
 }
 
-.alert .errorMessage {
-    background: #ffa4a4;
+.errorMessage {
+    background-color: #ffa4a4;
     color: crimson;
 }
