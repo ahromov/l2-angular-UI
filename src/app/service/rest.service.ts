@@ -5,7 +5,7 @@ import {NewsDto} from "../dto/NewsDto";
 import {TokenDto} from "../dto/TokenDto";
 import {UserDto, UserPasswordDto} from "../dto/UserDto";
 import {BASE_URL} from "./config/BASE_URL";
-import {AccountDto} from "../dto/AccountDto";
+import {AccountDto, AccountPasswordDto} from "../dto/AccountDto";
 import {CharacterCountDto, CharacterDto, CommonStatisticDto} from "../dto/CommonStatisticDto";
 import {TopTenPlayerDto} from "../dto/TopTenPlayerDto";
 import {ClanDto} from "../dto/ClanDto";
@@ -85,14 +85,14 @@ export class RestService {
         return this.http.post<AccountDto>(this.baseUrl + '/priv/accounts', user, httpOptions);
     }
 
-    changeAccountPassword(accountDto: AccountDto, token: string | null) {
+    changeAccountPassword(login: string, accountDto: AccountPasswordDto, token: string | null) {
         const httpOptions = {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${token}`
             })
         };
-        return this.http.patch<AccountDto>(this.baseUrl + '/priv/accounts/' + accountDto.login + '/password', accountDto, httpOptions);
+        return this.http.patch<AccountDto>(this.baseUrl + '/priv/accounts/' + login + '/password', accountDto, httpOptions);
     }
 
     getAllAccounts(token: string | null) {
