@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
 import {TopBarComponent} from './component/top-bar/top-bar.component';
-import {NewsListComponent} from './component/news-details/news-list/news-list.component';
+import {NewsListComponent} from './component/news-list/news-list.component';
 import {NewsDetailsComponent} from './component/news-details/news-details.component';
 import {LoginComponent} from './component/login/login.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -27,6 +27,10 @@ import {AccountCreateComponent} from './component/cabinet/account-create/account
 import {ContactComponent} from './component/cabinet/contact/contact.component';
 import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module, ReCaptchaV3Service} from "ng-recaptcha";
 import {environment} from "../environments/environment";
+import { UserListComponent } from './component/cabinet/user-list/user-list.component';
+import { UsersAccountsListComponent } from './component/cabinet/users-accounts-list/users-accounts-list.component';
+import { AdminNewsListComponent } from './component/cabinet/admin-news-list/admin-news-list.component';
+import { CreateNewsFormComponent } from './component/cabinet/create-news-form/create-news-form.component';
 
 @NgModule({
   bootstrap: [
@@ -48,6 +52,10 @@ import {environment} from "../environments/environment";
     AccountPasswordChangeComponent,
     AccountCreateComponent,
     ContactComponent,
+    UserListComponent,
+    UsersAccountsListComponent,
+    AdminNewsListComponent,
+    CreateNewsFormComponent,
   ],
   imports: [
     BrowserModule,

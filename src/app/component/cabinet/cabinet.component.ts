@@ -25,6 +25,13 @@ export class CabinetComponent {
     selectedLogin?: string;
     isShowContactForm: boolean = false;
 
+    public roles?: string[];
+
+    isShowUserList: boolean = false;
+    isShowUsersAccounts: boolean = false;
+    isShowNewsList: boolean = false;
+    isShowCreateNewsForm: boolean = false;
+
     constructor(
         private restService: RestService,
         private router: Router
@@ -39,31 +46,28 @@ export class CabinetComponent {
     getGreeting() {
         let token = localStorage.getItem(TOKEN);
         if (token !== null) this.restService.getGreeting(token).subscribe(value => {
-            this.greeting = 'Hello ' + value.login + '!'
+            this.greeting = 'Hello ' + value.login + '!';
+            this.roles = value.roles;
         });
     }
 
     showAccountCreateForm() {
-        this.clearMessages()
-        this.hideForms()
+        this.clear();
         this.isShowCreateAccountForm = !this.isShowCreateAccountForm;
     }
 
     showAllAccounts() {
-        this.clearMessages()
-        this.hideForms()
+        this.clear();
         this.isShowAccountsList = !this.isShowAccountsList;
     }
 
     showPasswordChangeForm() {
-        this.clearMessages()
-        this.hideForms()
+        this.clear();
         this.isShowChangePasswordForm = !this.isShowChangePasswordForm;
     }
 
     showContactForm() {
-        this.clearMessages()
-        this.hideForms()
+        this.clear();
         this.isShowContactForm = !this.isShowContactForm;
     }
 
@@ -84,6 +88,29 @@ export class CabinetComponent {
         this.errorMessage = $event;
         this.showAlert()
     }
+    isInRole(role: string) {
+        return this.roles?.includes(role)
+    }
+
+    showAllUsers() {
+        this.clear();
+        this.isShowUserList = !this.isShowUserList;
+    }
+
+    showAllUsersAccounts() {
+        this.clear();
+        this.isShowUsersAccounts = !this.isShowUsersAccounts;
+    }
+
+    showNewsList() {
+        this.clear();
+        this.isShowNewsList = !this.isShowNewsList;
+    }
+
+    showCreateNewsForm() {
+        this.clear();
+        this.isShowCreateNewsForm = !this.isShowCreateNewsForm;
+    }
 
     private hideForms(){
         this.isShowCreateAccountForm = false;
@@ -91,6 +118,15 @@ export class CabinetComponent {
         this.isShowAccountChangePasswordPasswordForm = false;
         this.isShowChangePasswordForm = false;
         this.isShowContactForm = false;
+        this.isShowUserList = false;
+        this.isShowUsersAccounts = false;
+        this.isShowNewsList = false;
+        this.isShowCreateNewsForm = false;
+    }
+
+    private clear() {
+        this.clearMessages()
+        this.hideForms()
     }
 
     private clearMessages(){

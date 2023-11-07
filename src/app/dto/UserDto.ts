@@ -1,6 +1,7 @@
 export class UserDto {
     login: string;
     email: string;
+    roles?: string[];
     userPassword: UserPasswordDto;
 
     constructor(
