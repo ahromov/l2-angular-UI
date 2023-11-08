@@ -196,4 +196,75 @@ export class RestService {
         };
         return this.http.post(this.baseUrl + '/pub/reCaptcha/validate', { "response": token }, httpOptions);
     }
+
+    getAllUsers(token: string | null) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.get<UserDto[]>(this.baseUrl + '/admin/users', httpOptions);
+    }
+
+    getDeleteUser(acc: UserDto, token: string | null) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.delete(this.baseUrl + `/admin/users/${acc.email}`, httpOptions);
+    }
+
+    getAllUserAccounts(token: string | null) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.get<AccountDto[]>(this.baseUrl + '/admin/accounts', httpOptions);
+    }
+
+    deleteAccount(accountDto: AccountDto, token: string | null) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.delete(this.baseUrl + `/admin/accounts/${accountDto.login}/email/${accountDto.email}`, httpOptions);
+    }
+
+    getNewsList(token: string | null) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.get<NewsDto[]>(this.baseUrl + '/admin/news', httpOptions);
+    }
+
+    getDeleteNews(news: NewsDto, token: string | null) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            })
+        };
+        return this.http.delete(this.baseUrl + `/admin/news/${news.id}`, httpOptions);
+    }
+
+    createNews(token: string | null, formData: FormData | undefined) {
+        const httpOptions = {
+            headers: new HttpHeaders({
+                    'Accept': '*/*',
+                    'Authorization': `Bearer ${token}`
+                }
+            )
+        };
+        return this.http.post(this.baseUrl + '/admin/news', formData, httpOptions);
+    }
 }

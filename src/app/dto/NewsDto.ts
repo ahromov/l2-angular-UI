@@ -1,9 +1,9 @@
-export interface NewsDto{
+export class NewsDto{
 
-    id: number,
-    title: string,
-    text: string,
-    date: string,
-    image: string
+    id?: number;
+    title?: string;
+    text?: string;
+    date?: string;
+    image?: string;
 
 }

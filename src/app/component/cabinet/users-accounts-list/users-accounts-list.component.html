@@ -1,0 +1,20 @@
+<div>
+    <table>
+        <tr>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let acc of allAccounts">
+            <td>
+                {{ acc.login }}
+            </td>
+            <td>
+                {{ acc.email }}
+            </td>
+            <td>
+                <a (click)="deleteAccount(acc)">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>

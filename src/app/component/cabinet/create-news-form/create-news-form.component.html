@@ -1,0 +1,25 @@
+<div>
+    <form [formGroup]="checkoutForm">
+        <div>
+            <label for="title">
+                Title
+            </label>
+            <input id="title" type="text" formControlName="title">
+        </div>
+        <div>
+            <label for="text">
+                Text
+            </label>
+            <textarea id="text" formControlName="text"></textarea>
+        </div>
+        <div>
+            {{fileName || "No file uploaded yet."}}
+            <label for="image">
+                Picture
+            </label>
+            <input id="image" type="file" (change)="fileSelected($event)">
+        </div>
+        <button class="button" type="submit" (click)="createNews()">Add news</button>
+    </form>
+</div>
+

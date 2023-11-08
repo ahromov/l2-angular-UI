@@ -1,0 +1,24 @@
+<div>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Public date</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let news of newsList">
+            <td>
+                {{ news.title }}
+            </td>
+            <td>
+                {{ news.text }}
+            </td>
+            <td>
+                {{ news.date | date }}
+            </td>
+            <td>
+                <a (click)="deleteNews(news)">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>

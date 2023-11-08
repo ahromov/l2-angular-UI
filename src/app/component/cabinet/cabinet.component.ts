@@ -88,6 +88,7 @@ export class CabinetComponent {
         this.errorMessage = $event;
         this.showAlert()
     }
+
     isInRole(role: string) {
         return this.roles?.includes(role)
     }

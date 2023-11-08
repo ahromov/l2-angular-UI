@@ -1,0 +1,25 @@
+<div>
+    <table>
+        <tr>
+            <th>Email</th>
+            <th>User name</th>
+            <th>Roles</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let acc of allUsers">
+            <td>
+                {{ acc.email }}
+            </td>
+            <td>
+                {{ acc.login }}
+            </td>
+            <td>
+                {{ acc.roles }}
+            </td>
+            <td>
+                <a *ngIf="!acc.roles?.includes('ADMIN')" (click)="deleteUser(acc)">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
