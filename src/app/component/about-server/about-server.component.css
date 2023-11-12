@@ -1,15 +1,1 @@
-div.server_rates {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-}
 
-div.server_rates table {
-    width: 50%;
-    text-align: center;
-}
-
-div.server_rates table tr{
-    border-radius: 5px 5px 5px 5px;
-}

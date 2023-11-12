@@ -12,7 +12,7 @@ import {CastleDto} from "../dto/CastleDto";
 import {FortDto} from "../dto/FortDto";
 import {UserEmailDto} from "../dto/UserEmailDto";
 import {MessageDto} from "../dto/MessageDto";
-import {environment} from "../../environments/environment";
+import {environment, videosIds} from "../../environments/environment";
 
 
 @Injectable({
@@ -267,4 +267,5 @@ export class RestService {
         };
         return this.http.post(this.baseUrl + '/admin/news', formData, httpOptions);
     }
+
 }

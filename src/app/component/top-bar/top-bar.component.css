@@ -7,50 +7,45 @@ div.app_top_bar {
 div.logo_bar {
     display: flex;
     justify-content: space-between;
-    border-radius: 0 0 10px 10px;
-    background-color: #1976d2;
+    background-color: #3b0101;
     padding: 5px 10px 8px 10px;
-
+    color: #0c0505;
 }
 
 div.nav_bar {
     display: flex;
     justify-content: center;
-    background-color: white;
+    background-color: #590000;
+    border-radius: 0 0 10px 10px;
 }
 
 div.nav_bar a{
     display: flex;
     margin-inline: 10px;
-    margin-top: 15px;
 }
 
 div.nav_bar h4{
-    margin: 5px 0 0;
+    margin: 0 0 0;
 }
 
 div.server_status {
-    padding: 3px;
+    padding: 0;
     font-size: 11px;
     display: flex;
-    color: #EEEEEE;
-    background-color: azure;
-    border-radius: 3px;
+    background-color: #590000;
+    border-radius: 23px;
 }
 
 .server_status_right {
     margin-left: 3px;
     margin-top: 6px;
+    line-height: 12px;
+    padding-right: 16px;
 }
 
 .server_status em {
-    margin-top: 7px;
+    margin-top: 5px;
     padding: 5px 0 0;
-    background-color: white;
+    font-size: 30px;
 }
 
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/

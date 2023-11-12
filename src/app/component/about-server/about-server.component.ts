@@ -10,7 +10,9 @@ export class AboutServerComponent {
 
     serverProperties!: Map<string, string>;
 
-    constructor(private restService: RestService) {
+    constructor(
+        private restService: RestService
+    ) {
         this.restService.getProperties()
             .subscribe(value => this.serverProperties = value);
     }

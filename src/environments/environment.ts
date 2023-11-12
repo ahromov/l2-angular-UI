@@ -5,3 +5,10 @@ export const environment =  {
         siteKey: 'google-token',
     }
 }
+
+export const videosIds: string[] = [
+    'https://www.youtube.com/embed/nz7FbTBmZ_M?controls=0',
+    'https://www.youtube.com/embed/kcD1b1rldK0?controls=0',
+    'https://www.youtube.com/embed/1a52kEtLjZs?controls=0',
+    'https://www.youtube.com/embed/9-jbTggvUlQ?controls=0',
+];

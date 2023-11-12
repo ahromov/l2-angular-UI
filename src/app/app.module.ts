@@ -14,7 +14,7 @@ import {AboutServerComponent} from './component/about-server/about-server.compon
 import {CabinetComponent} from './component/cabinet/cabinet.component';
 import {StatisticComponent} from './component/statistic/statistic.component';
 import {commonGuardGuard, loginGuard} from "./common-guard.guard";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {HashLocationStrategy, LocationStrategy, NgOptimizedImage} from "@angular/common";
 import {CabinetRestorePasswordComponent} from './component/cabinet-restore-password/cabinet-restore-password.component';
 import {
   CabinetChangePasswordComponent
@@ -31,6 +31,7 @@ import { UserListComponent } from './component/cabinet/user-list/user-list.compo
 import { UsersAccountsListComponent } from './component/cabinet/users-accounts-list/users-accounts-list.component';
 import { AdminNewsListComponent } from './component/cabinet/admin-news-list/admin-news-list.component';
 import { CreateNewsFormComponent } from './component/cabinet/create-news-form/create-news-form.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   bootstrap: [
@@ -56,25 +57,27 @@ import { CreateNewsFormComponent } from './component/cabinet/create-news-form/cr
     UsersAccountsListComponent,
     AdminNewsListComponent,
     CreateNewsFormComponent,
+    SafePipe,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RecaptchaV3Module,
-    RouterModule.forRoot([
-      {path: '', component: NewsListComponent},
-      {path: 'news/:newsId', component: NewsDetailsComponent},
-      {path: 'login', component: LoginComponent, canActivate: [loginGuard]},
-      {path: 'registration', component: RegistrationComponent},
-      {path: 'about', component: AboutServerComponent},
-      {path: 'cabinet', component: CabinetComponent, canActivate: [commonGuardGuard]},
-      {path: 'statistic', component: StatisticComponent},
-      {path: 'restore-password', component: CabinetRestorePasswordComponent},
-      {path: '**', redirectTo: '', pathMatch: 'full'},
-    ]),
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        RecaptchaV3Module,
+        RouterModule.forRoot([
+            {path: '', component: NewsListComponent},
+            {path: 'news/:newsId', component: NewsDetailsComponent},
+            {path: 'login', component: LoginComponent, canActivate: [loginGuard]},
+            {path: 'registration', component: RegistrationComponent},
+            {path: 'about', component: AboutServerComponent},
+            {path: 'cabinet', component: CabinetComponent, canActivate: [commonGuardGuard]},
+            {path: 'statistic', component: StatisticComponent},
+            {path: 'restore-password', component: CabinetRestorePasswordComponent},
+            {path: '**', redirectTo: '', pathMatch: 'full'},
+        ]),
+        FormsModule,
+        NgOptimizedImage
+    ],
   providers: [
     {
       provide: LocationStrategy,

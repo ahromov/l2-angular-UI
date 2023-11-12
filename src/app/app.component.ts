@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {videosIds} from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -6,11 +7,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  ifRameUrl: string  = '';
+
+  constructor(
+  ) {
+    // @ts-ignore
+    this.ifRameUrl = this.getVideosIds();
+  }
+
+  getVideosIds() {
+    let number: number | undefined;
+    number = Math.floor(Math.random() * videosIds.length);
+    return videosIds.at(number);
+  }
+
 }
 
-
-/*
-Copyright Google LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://angular.io/license
-*/

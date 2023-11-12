@@ -21,7 +21,7 @@ export class TopBarComponent implements OnInit {
         // @ts-ignore
         this.gameServerStatus = this.restService.getServerStatus()
             .subscribe(value => {
-                if (value.status === 'ON') this.bulbeColor = 'greenyellow'
+                if (value.status === 'ON') this.bulbeColor = 'green'
                 this.gameServerStatus = value
             });
     }

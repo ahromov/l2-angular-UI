@@ -27,4 +27,7 @@ export class StatisticComponent {
     this.forts = restService.getForts()
   }
 
+  getDate(siegeDate: number | undefined) {
+    return siegeDate !== 0 ? Date.call(siegeDate)  : 'none'
+  }
 }
