@@ -1,18 +1,15 @@
-<div>
-    <h3>About the server!</h3>
-    <div>
-        <table>
-            <tr>
-                <th><h5>RATE NAME</h5></th>
-                <th><h5>RATE VALUE</h5></th>
-            </tr>
-            <tbody>
-            <tr *ngFor="let sp of serverProperties | keyvalue">
-                <td>{{sp.key}}</td>
-                <td>{{sp.value}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+<h2>About server</h2>
+<app-video></app-video>
+<table class="about-table">
+    <tr>
+        <th><h5>RATE NAME</h5></th>
+        <th><h5>RATE VALUE</h5></th>
+    </tr>
+    <tbody>
+    <tr *ngFor="let sp of serverProperties | keyvalue">
+        <td>{{sp.key}}</td>
+        <td>x{{sp.value}}</td>
+    </tr>
+    </tbody>
+</table>
 

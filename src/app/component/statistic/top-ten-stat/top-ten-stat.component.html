@@ -1,0 +1,21 @@
+<h3>TOP 10 PLAYERS</h3>
+<table>
+    <tr>
+        <th><h5>Nick name</h5></th>
+        <th><h5>Lvl</h5></th>
+        <th><h5>Class</h5></th>
+        <th><h5>Sex</h5></th>
+        <th><h5>Clan</h5></th>
+        <th><h5>Game time</h5></th>
+        <th><h5>PvP/PK:</h5></th>
+    </tr>
+    <tr *ngFor="let ttp of topTenPlayers">
+        <td>{{ttp.charName}}</td>
+        <td>{{ttp.level}}</td>
+        <td>{{ttp.className}}</td>
+        <td>{{ttp.gender}}</td>
+        <td>{{ttp.className}}</td>
+        <td>{{ttp.onlineTime}}}</td>
+        <td>{{ttp.pvpKills}}/{{ttp.pkKills}}</td>
+    </tr>
+</table>

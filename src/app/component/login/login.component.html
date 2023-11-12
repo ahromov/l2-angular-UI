@@ -1,7 +1,5 @@
-<h3>Sign-in</h3>
-
-<form *ngIf="!logedIn" [formGroup]="checkoutForm" (ngSubmit)="onLogin()">
-
+<h2>Sign-in</h2>
+<form [formGroup]="checkoutForm" (ngSubmit)="onLogin()">
     <div>
         <label for="email">
             E-Mail
@@ -22,6 +20,5 @@
     </div>
 
     <button class="button" type="submit">Login</button>
-
 </form>
 

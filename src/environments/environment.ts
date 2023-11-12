@@ -1,8 +1,8 @@
 export const environment =  {
     production: false,
-    baseUrl: "http://192.168.0.5:8181/api/v1",
+    baseUrl: "http://176.117.185.0:8181/api/v1",
     recaptcha:{
-        siteKey: 'google-token',
+        siteKey: '6LcW18QUAAAAAO7x430ImUvox3gR3SzhUwJCIr8C',
     }
 }
 

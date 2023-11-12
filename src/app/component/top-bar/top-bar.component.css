@@ -12,19 +12,19 @@ div.logo_bar {
     color: #0c0505;
 }
 
-div.nav_bar {
+.nav_bar {
     display: flex;
     justify-content: center;
     background-color: #590000;
     border-radius: 0 0 10px 10px;
 }
 
-div.nav_bar a{
+.nav_bar a{
     display: flex;
     margin-inline: 10px;
 }
 
-div.nav_bar h4{
+.nav_bar h4{
     margin: 0 0 0;
 }
 

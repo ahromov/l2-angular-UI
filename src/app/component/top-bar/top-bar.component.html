@@ -14,12 +14,12 @@
             </div>
         </div>
 
-        <a routerLink="/login" class="button fancy-button">
+        <a [routerLink]="['/login']" class="button fancy-button">
             <em class="material-icons">account_box</em>Cabinet
         </a>
     </div>
 
-    <div class="nav_bar">
+    <nav class="nav_bar">
         <a [routerLink]="['/']">
                 <em class="material-icons">announcement</em>
                 <h4>News</h4>
@@ -30,7 +30,7 @@
         </a>
         <a [routerLink]="['/registration']">
             <em class="material-icons">supervised_user_circle</em>
-            <h4>Registration</h4>
+            <h4>Sign-up</h4>
         </a>
         <a href="https://drive.google.com/file/d/11oJCvcx1rUn6Z8Qup8Z8HEHxaxtpsZ0U/view?usp=sharing" target="_blank">
             <em class="material-icons">assignment</em>
@@ -40,7 +40,7 @@
             <em class="material-icons">query_stats</em>
             <h4>Statistic</h4>
         </a>
-    </div>
+    </nav>
 </div>
 
 

@@ -1,0 +1,19 @@
+<h3>CASTLES</h3>
+<table>
+    <tr>
+        <th><h5>Picture</h5></th>
+        <th><h5>Name</h5></th>
+        <th><h5>Clan</h5></th>
+        <th><h5>Tax</h5></th>
+        <th><h5>Treasure</h5></th>
+        <th><h5>Siege date</h5></th>
+    </tr>
+    <tr *ngFor="let cl of castles">
+        <td class="picture"><img cImg src="assets/images/castles/{{cl?.id}}.jpg" alt="" fill=""></td>
+        <td class="picture">{{cl?.name}}</td>
+        <td>{{cl?.clanName}}</td>
+        <td>{{cl?.taxPercent}}</td>
+        <td>{{cl?.treasury}}</td>
+        <td>{{cl?.siegeDate| date: 'dd/MM/yyyy HH:mm'}} </td>
+    </tr>
+</table>

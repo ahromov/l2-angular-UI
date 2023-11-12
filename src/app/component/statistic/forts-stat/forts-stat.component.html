@@ -1,0 +1,15 @@
+<h3>FORTS</h3>
+<table>
+    <tr>
+        <th><h5>Picture</h5></th>
+        <th><h5>Name</h5></th>
+        <th><h5>Clan</h5></th>
+        <th><h5>Siege date</h5></th>
+    </tr>
+    <tr *ngFor="let cl of forts">
+        <td class="picture"><img cImg src="assets/images/forts/{{cl?.id}}.jpg" alt="" fill=""></td>
+        <td>{{cl?.name}}</td>
+        <td>{{cl?.clanName}}</td>
+        <td>{{cl?.siegeDate !== 0 ? (cl?.siegeDate |  date: 'dd/MM/yyyy HH:mm') : 'Not assigned'}}</td>
+    </tr>
+</table>

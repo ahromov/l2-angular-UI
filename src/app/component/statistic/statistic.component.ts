@@ -1,10 +1,4 @@
 import { Component } from '@angular/core';
-import {CommonStatisticDto} from "../../dto/CommonStatisticDto";
-import {RestService} from "../../service/rest.service";
-import {TopTenPlayerDto} from "../../dto/TopTenPlayerDto";
-import {ClanDto} from "../../dto/ClanDto";
-import {CastleDto} from "../../dto/CastleDto";
-import {FortDto} from "../../dto/FortDto";
 
 @Component({
   selector: 'app-statistic',
@@ -13,22 +7,4 @@ import {FortDto} from "../../dto/FortDto";
 })
 export class StatisticComponent {
 
-  commons?: CommonStatisticDto;
-  topTenPlayers?: TopTenPlayerDto[];
-  clans?: ClanDto[];
-  castles?: CastleDto[];
-  forts?: FortDto[];
-
-  constructor(restService: RestService) {
-    this.commons = restService.getCommonStatistic()
-    this.topTenPlayers = restService.getTopTenPlayers()
-    this.clans = restService.getClans()
-    this.castles = restService.getCastles()
-    this.forts = restService.getForts()
-  }
-
-  getDate(siegeDate: number | undefined) {
-    // @ts-ignore
-    return siegeDate !== 0 ? new Date(siegeDate)  : 'None'
-  }
 }

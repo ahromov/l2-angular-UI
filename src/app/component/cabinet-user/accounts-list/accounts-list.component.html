@@ -1,0 +1,10 @@
+<div>
+    <ul>
+        <li *ngFor="let acc of allAccounts">
+            Login: {{ acc.login }}
+            <a [routerLink]="['account-password-change', acc.login]" (click)="showAccountChangePasswordForm()">Change
+                password</a>
+            <router-outlet *ngIf="isShowAccountsPasswordChangeForm"></router-outlet>
+        </li>
+    </ul>
+</div>

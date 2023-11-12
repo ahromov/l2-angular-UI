@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {RestService} from "../../../service/rest.service";
-import {UserPasswordDto} from "../../../dto/UserDto";
+import {RestService} from "../../service/rest.service";
+import {UserPasswordDto} from "../../dto/UserDto";
 
 @Component({
   selector: 'app-cabinet-change-password',

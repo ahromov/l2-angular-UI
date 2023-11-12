@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {AccountPasswordDto} from "../../../dto/AccountDto";
 import {RestService} from "../../../service/rest.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-account-password-change',
@@ -10,9 +11,8 @@ import {RestService} from "../../../service/rest.service";
 })
 export class AccountPasswordChangeComponent {
 
-  @Input() accLogin?: string;
-  @Output() infoMessage = new EventEmitter<string>();
-  @Output() errorMessage = new EventEmitter<string>();
+  infoMessage = '';
+  errorMessage = '';
 
   checkoutForm: FormGroup  = this.formBuilder.group({
     login: '',
@@ -21,13 +21,15 @@ export class AccountPasswordChangeComponent {
   });
 
   constructor(
+      private route: ActivatedRoute,
       private formBuilder: FormBuilder,
       private restService: RestService,
   ) {
   }
 
   public ngOnInit(){
-    this.checkoutForm.controls['login'].setValue(this.accLogin);
+    const routeParams = this.route.snapshot.paramMap;
+    this.checkoutForm.controls['login'].setValue(routeParams.get('accId'));
   }
 
   changePassword() {
@@ -37,10 +39,10 @@ export class AccountPasswordChangeComponent {
     this.restService.changeAccountPassword(login, passwordDto, token)
         .subscribe({
           next: value => {
-            this.infoMessage.emit(`Congratulation! Account ${value.login} password changed!`);
+            this.infoMessage = `Congratulation! Account ${value.login} password changed!`;
           },
           error: err => {
-            this.errorMessage.emit(`Passwords not match. Check its, and try again.`);
+            this.errorMessage = `Passwords not match. Check its, and try again.`;
           }
         });
   }

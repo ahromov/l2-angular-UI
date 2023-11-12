@@ -26,8 +26,8 @@ export class LoginComponent {
         private router: Router,
         private recaptchaV3Service: ReCaptchaV3Service
     ) {
-        let item = localStorage.getItem('token');
-        if (item !== null) this.logedIn = true;
+        // let item = localStorage.getItem('token');
+        // if (item !== null) this.logedIn = true;
     }
 
     onLogin(): void {
@@ -49,13 +49,23 @@ export class LoginComponent {
         let password = this.checkoutForm.controls['password'].value;
         this.restService.getAuthToken(email, password).subscribe({
             next: (value) => {
-                localStorage.setItem('token', value.token)
-                this.logedIn = true;
-                this.checkoutForm.reset();
-                this.router.navigate(['cabinet'])
+                if (value.token) {
+                    localStorage.setItem('token', value.token)
+                    this.logedIn = true;
+                    this.checkoutForm.reset();
+                    this.restService.getGreeting(value.token).subscribe(value => {
+                        if (value.roles?.includes('ADMIN')) {
+                            this.router.navigate(['/cabinet-admin', 'ADMIN']);
+                        } else {
+                            this.router.navigate(['/cabinet-user', 'USER']);
+                        }
+                    })
+                }
+                return true;
             },
             error: () => {
                 this.errorMessage = 'User not exists or incorrect password... '
+                return false;
             }
         });
     }

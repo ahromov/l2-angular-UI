@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {AccountDto} from "../../../dto/AccountDto";
 import {RestService} from "../../../service/rest.service";
 
@@ -9,9 +9,7 @@ import {RestService} from "../../../service/rest.service";
 })
 export class AccountsListComponent {
 
-  @Output() isShowAccountsPasswordChangeForm = new EventEmitter<boolean>();
-  @Output() isShowAccountsList = new EventEmitter<boolean>();
-  @Output() selectedLogin = new EventEmitter<string>();
+  isShowAccountsPasswordChangeForm: boolean = false;
 
   allAccounts?: AccountDto[];
 
@@ -33,9 +31,7 @@ export class AccountsListComponent {
     return list;
   }
 
-  showAccountChangePasswordForm(login: string) {
-    this.selectedLogin.emit(login);
-    this.isShowAccountsList.emit(false);
-    this.isShowAccountsPasswordChangeForm.emit(true);
+  showAccountChangePasswordForm() {
+    this.isShowAccountsPasswordChangeForm = !this.isShowAccountsPasswordChangeForm;
   }
 }

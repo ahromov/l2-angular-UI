@@ -1,0 +1,23 @@
+<h3>CLANS</h3>
+<table>
+    <tr>
+        <th><h5>Name</h5></th>
+        <th><h5>Lvl</h5></th>
+        <th><h5>Leader</h5></th>
+        <th><h5>Castle</h5></th>
+        <th><h5>Fort</h5></th>
+        <th><h5>Reputation</h5></th>
+        <th><h5>Player midLvl</h5></th>
+        <th><h5>Ally</h5></th>
+    </tr>
+    <tr *ngFor="let cl of clans">
+        <td>{{cl?.name}}</td>
+        <td>{{cl?.level}}</td>
+        <td>{{cl?.leaderName}}</td>
+        <td>{{cl?.castleName}}</td>
+        <td>{{cl?.fortName}}</td>
+        <td>{{cl?.reputation}}}</td>
+        <td>{{cl?.midCharsLevel}}</td>
+        <td>{{cl?.alyName}}</td>
+    </tr>
+</table>

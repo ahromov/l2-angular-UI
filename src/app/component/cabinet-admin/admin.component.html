@@ -1,0 +1,20 @@
+<div *ngIf="loggedIn">
+    <h2>Cabinet</h2>
+    <p>{{ greeting }}</p>
+    <div class="cabinet_nav_bar">
+        <nav>
+            <a [routerLink]="['cabinet-change-password']">Change password</a>
+            <a [routerLink]="['user-list']">Show all users</a>
+            <a [routerLink]="['users-accounts-list']">Show all accounts</a>
+            <a [routerLink]="['admin-news-list']">Show news list</a>
+            <a [routerLink]="['create-news-form']">Add news</a>
+        </nav>
+
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <button class="button" type="submit" (click)="onLogout()">Logout</button>
+</div>
+
+
