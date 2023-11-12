@@ -28,6 +28,7 @@ export class StatisticComponent {
   }
 
   getDate(siegeDate: number | undefined) {
-    return siegeDate !== 0 ? Date.call(siegeDate)  : 'none'
+    // @ts-ignore
+    return siegeDate !== 0 ? new Date(siegeDate)  : 'None'
   }
 }
